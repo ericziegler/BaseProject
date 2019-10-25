@@ -135,6 +135,8 @@ class LightButton: ApplicationStyleButton {
     }
 }
 
+// MARK: - UIFont
+
 extension UIFont {
 
     class func applicationFontOfSize(_ size: CGFloat) -> UIFont {
@@ -158,7 +160,7 @@ extension UIFont {
 
 }
 
-// MARK: - UIColora;sldfkkkfkkf
+// MARK: - UIColor
 
 extension UIColor {
 
@@ -199,6 +201,8 @@ extension UIColor {
 
 }
 
+// MARK: - UITextField
+
 extension UITextField {
     @IBInspectable var placeholderColor: UIColor {
         get {
@@ -211,6 +215,8 @@ extension UITextField {
         }
     }
 }
+
+// MARK: - UIView
 
 extension UIView {
 
