@@ -214,6 +214,79 @@ extension UITextField {
             self.attributedPlaceholder = NSAttributedString(string: attributedPlaceholder.string, attributes: attributes)
         }
     }
+
+    func addButtonOnKeyboardWithText(buttonText: String, onRightSide: Bool = true) -> UIBarButtonItem
+    {
+        let buttonToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        buttonToolbar.barStyle = UIBarStyle.default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let buttonItem: UIBarButtonItem = UIBarButtonItem(title: buttonText, style: UIBarButtonItem.Style.done, target: self, action: nil)
+
+        var items = [UIBarButtonItem]()
+        if onRightSide == true {
+            items.append(flexSpace)
+            items.append(buttonItem)
+        } else {
+            items.append(buttonItem)
+            items.append(flexSpace)
+        }
+
+        buttonToolbar.items = items
+        buttonToolbar.sizeToFit()
+
+        self.inputAccessoryView = buttonToolbar
+
+        return buttonItem
+    }
+
+}
+
+class StyledTextField : UITextField {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.commonInit()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+
+    func commonInit() {
+        self.borderStyle = .none
+        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+        self.leftViewMode = .always
+        self.styleBorderWithColor()
+    }
+
+    func styleBorderWithColor(color: UIColor = UIColor(hex: 0xdddddd), cornerRadius: CGFloat = 10, borderWidth: CGFloat = 1.5) {
+        self.layer.borderColor = color.cgColor
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderWidth = borderWidth
+    }
+}
+
+class StyledTextView : UITextView {
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        self.commonInit()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+
+    func commonInit() {
+        self.styleBorderWithColor()
+    }
+
+    func styleBorderWithColor(color: UIColor = UIColor(hex: 0xdddddd), cornerRadius: CGFloat = 10, borderWidth: CGFloat = 1.5) {
+        self.layer.borderColor = color.cgColor
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderWidth = borderWidth
+    }
 }
 
 // MARK: - UIView
