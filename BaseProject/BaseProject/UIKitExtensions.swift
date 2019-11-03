@@ -179,6 +179,13 @@ extension UIColor {
         self.init(red:r, green:g, blue:b, alpha:a)
     }
 
+    func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { rendererContext in
+            self.setFill()
+            rendererContext.fill(CGRect(origin: .zero, size: size))
+        }
+    }
+
     class var main: UIColor {
         return UIColor(hex: 0xc83637)
     }
@@ -289,6 +296,28 @@ class StyledTextView : UITextView {
     }
 }
 
+// MARK: - UISegmentedControl
+
+extension UISegmentedControl {
+    /// Tint color doesn't have any effect on iOS 13.
+    func ensureiOS12Style() {
+        if #available(iOS 13, *) {
+            let tintColorImage = tintColor.image()
+            // Must set the background image for normal to something (even clear) else the rest won't work
+            let controlBackgroundColor: UIColor = backgroundColor ?? .clear
+            setBackgroundImage(controlBackgroundColor.image(), for: .normal, barMetrics: .default)
+            setBackgroundImage(tintColorImage, for: .selected, barMetrics: .default)
+            let highlightedBackgroundColor: UIColor = tintColor.withAlphaComponent(0.2)
+            setBackgroundImage(highlightedBackgroundColor.image(), for: .highlighted, barMetrics: .default)
+            setBackgroundImage(tintColorImage, for: [.highlighted, .selected], barMetrics: .default)
+            setTitleTextAttributes([.foregroundColor: tintColor!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular)], for: .normal)
+            setDividerImage(tintColorImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+            layer.borderWidth = 1
+            layer.borderColor = tintColor.cgColor
+        }
+    }
+}
+
 // MARK: - UIView
 
 extension UIView {
@@ -302,6 +331,21 @@ extension UIView {
         let topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
         let bottomConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: parentView, attribute: .bottom, multiplier: 1, constant: 0)
         parentView.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+    }
+
+}
+
+class GradientView: UIView {
+
+    func updateGradientWith(firstColor: UIColor, secondColor: UIColor) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = bounds
+
+        layer.insertSublayer(gradientLayer, at: 0)
     }
 
 }
