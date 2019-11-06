@@ -171,7 +171,7 @@ extension UIColor {
         self.init(red:r, green:g, blue:b, alpha:alpha)
     }
 
-    convenience init(integerRed red: Int, green: Int, blue: Int, alpha: Int = 255) {
+    convenience init(intRed red: Int, green: Int, blue: Int, alpha: Int = 255) {
         let r = CGFloat(red) / 255.0
         let g = CGFloat(green) / 255.0
         let b = CGFloat(blue) / 255.0
