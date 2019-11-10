@@ -333,6 +333,82 @@ extension UIView {
         parentView.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
     }
 
+    static func createTableHeaderWith(title: String, tableView: UITableView, bgColor: UIColor? = UIColor.lightGray, titleColor: UIColor? = UIColor.black, font: UIFont? = UIFont.boldSystemFont(ofSize: 20)) -> UIView {
+        let bg = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
+        bg.backgroundColor = bgColor
+        let titleLabel = UILabel(frame: .zero)
+        titleLabel.text = title
+        titleLabel.textColor = titleColor
+        titleLabel.backgroundColor = UIColor.clear
+        titleLabel.font = font
+        bg.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        let leadingConstraint = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: bg, attribute: .leading, multiplier: 1, constant: 10)
+        let trailingConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: bg, attribute: .trailing, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: bg, attribute: .top, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: titleLabel, attribute: .bottom, relatedBy: .equal, toItem: bg, attribute: .bottom, multiplier: 1, constant: 0)
+        bg.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+        return bg
+    }
+
+    func screenshot() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        if (image != nil) {
+            return image!
+        }
+        return UIImage()
+    }
+
+    static func screenshotTable(tableView: UITableView) -> UIImage {
+        var image = UIImage();
+        UIGraphicsBeginImageContextWithOptions(tableView.contentSize, false, UIScreen.main.scale)
+
+        // save initial values
+        let savedContentOffset = tableView.contentOffset;
+        let savedFrame = tableView.frame;
+        let savedBackgroundColor = tableView.backgroundColor
+
+        // reset offset to top left point
+        tableView.contentOffset = CGPoint(x: 0, y: 0);
+        // set frame to content size
+        tableView.frame = CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: tableView.contentSize.height);
+        // remove background
+        tableView.backgroundColor = UIColor.clear
+
+        // make temp view with scroll view content size
+        // a workaround for issue when image on ipad was drawn incorrectly
+        let tempView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: tableView.contentSize.height));
+
+        // save superview
+        let tempSuperView = tableView.superview
+        // remove scrollView from old superview
+        tableView.removeFromSuperview()
+        // and add to tempView
+        tempView.addSubview(tableView)
+
+        // render view
+        // drawViewHierarchyInRect not working correctly
+        tempView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        // and get image
+        image = UIGraphicsGetImageFromCurrentImageContext()!;
+
+        // and return everything back
+        tempView.subviews[0].removeFromSuperview()
+        tempSuperView?.addSubview(tableView)
+
+        // restore saved settings
+        tableView.contentOffset = savedContentOffset;
+        tableView.frame = savedFrame;
+        tableView.backgroundColor = savedBackgroundColor
+
+        UIGraphicsEndImageContext();
+
+        return image
+    }
+
 }
 
 class GradientView: UIView {
