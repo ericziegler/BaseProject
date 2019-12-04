@@ -186,6 +186,23 @@ extension UIColor {
         }
     }
 
+    var lighterColor: UIColor {
+        return lighterColor(removeSaturation: 0.5, resultAlpha: -1)
+    }
+
+    func lighterColor(removeSaturation val: CGFloat, resultAlpha alpha: CGFloat) -> UIColor {
+        var h: CGFloat = 0, s: CGFloat = 0
+        var b: CGFloat = 0, a: CGFloat = 0
+
+        guard getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+            else {return self}
+
+        return UIColor(hue: h,
+                       saturation: max(s - val, 0.0),
+                       brightness: b,
+                       alpha: alpha == -1 ? a : alpha)
+    }
+
     class var main: UIColor {
         return UIColor(hex: 0xc83637)
     }
@@ -417,11 +434,16 @@ extension UIView {
 
 class GradientView: UIView {
 
-    func updateGradientWith(firstColor: UIColor, secondColor: UIColor) {
+    func updateGradientWith(firstColor: UIColor, secondColor: UIColor, vertical: Bool = true) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        if vertical == true {
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        } else {
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        }
         gradientLayer.locations = [0, 1]
         gradientLayer.frame = bounds
 
