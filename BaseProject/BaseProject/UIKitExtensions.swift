@@ -447,6 +447,11 @@ class GradientView: UIView {
         gradientLayer.locations = [0, 1]
         gradientLayer.frame = bounds
 
+        // remove any previous gradient
+        if let _ = layer.sublayers {
+            layer.sublayers = nil
+        }
+
         layer.insertSublayer(gradientLayer, at: 0)
     }
 
