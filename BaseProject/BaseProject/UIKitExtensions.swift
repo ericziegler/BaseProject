@@ -152,10 +152,23 @@ extension UIFont {
     }
 
     class func debugListFonts() {
-        UIFont.familyNames.forEach({ familyName in
-            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-            print(familyName, fontNames)
-        })
+        var families = [String]()
+        for family: String in UIFont.familyNames {
+            families.append(family)
+        }
+        families.sort { $0 < $1 }
+
+        for curFamily in families {
+            print(curFamily)
+            var names = [String]()
+            for curName: String in UIFont.fontNames(forFamilyName: curFamily) {
+                names.append(curName)
+            }
+            names.sort { $0 < $1 }
+            for curName in names {
+                print("== \(curName)")
+            }
+        }
     }
 
 }

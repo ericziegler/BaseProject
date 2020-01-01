@@ -286,4 +286,123 @@ extension Date {
         return Calendar.current.date(byAdding: .second, value: numberOfSeconds, to: self)
     }
 
+    static func deviceIs24Hours() -> Bool {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        let dateString: NSString = formatter.string(from: Date()) as NSString
+        let amRange = dateString.range(of: formatter.amSymbol)
+        let pmRange = dateString.range(of: formatter.pmSymbol)
+        return (amRange.location == NSNotFound && pmRange.location == NSNotFound)
+    }
+
+    func sunHasRisen() -> Bool {
+        var result = false
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH"
+        if let hour = Int(formatter.string(from: Date())) {
+            if hour > 7 && hour < 21 {
+                result = true
+            }
+        }
+
+        return result
+    }
+
+    func numeralFormattedStringForTimeZone(_ timeZone: TimeZone) -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = timeZone
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSZZZ"
+        return formatter.string(from: self).replacingOccurrences(of: " ", with: "T", options: .literal, range: nil)
+    }
+
+    func numeraFactoryFormattedString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        return formatter.string(from: self).replacingOccurrences(of: " ", with: "T", options: .literal, range: nil) + "Z"
+    }
+
+    static func middleDateBetweenDates(_ startDate: Date, endDate: Date) -> Date
+    {
+        var date1 = startDate
+        var date2 = endDate
+        if (endDate.isEarlierThan(startDate))
+        {
+            date1 = endDate
+            date2 = startDate
+        }
+        let timeDiff = date2.timeIntervalSince(date1)
+        return Date(timeInterval: (timeDiff / 2.0), since: date1)
+    }
+
+    func isBetweenDates(_ startDate: Date, endDate: Date) -> Bool {
+        if (self.isEarlierThan(startDate)) {
+            return false
+        }
+        if (self.isLaterThan(endDate)) {
+            return false
+        }
+        return true
+    }
+
+    func isBetweenDatesInclusive(_ startDate: Date, endDate: Date) -> Bool
+    {
+        var result = self.isBetweenDates(startDate, endDate: endDate)
+        if (!result)
+        {
+            if ((self == startDate) || (self == endDate))
+            {
+                result = true
+            }
+        }
+        return result
+    }
+
+    func isEarlierThan(_ date: Date) -> Bool {
+        return self.compare(date) == .orderedAscending
+    }
+
+    func isLaterThan(_ date: Date) -> Bool {
+        return self.compare(date) == .orderedDescending
+    }
+
+    func roundToMinutes(_ interval: Int) -> Date {
+        let time: DateComponents = Calendar.current.dateComponents([.hour, .minute], from: self)
+        let minutes: Int = time.minute!
+        let remain = minutes % interval;
+        return self.addingTimeInterval(TimeInterval(60 * (interval - remain))).dateWithZeroSeconds()
+    }
+
+    func numberOfDaysUntilDate(_ date: Date) -> Int {
+        let calendar: Calendar = Calendar.current
+        let components: DateComponents = calendar.dateComponents([.day], from: self, to: date)
+        return components.day!
+    }
+
+    func dateByAddingYears(_ numberOfYears: Int) -> Date? {
+        return Calendar.current.date(byAdding: .year, value: numberOfYears, to: self)
+    }
+
+    func dateByAddingMonths(_ numberOfMonths: Int) -> Date? {
+        return Calendar.current.date(byAdding: .month, value: numberOfMonths, to: self)
+    }
+
+    func dateByAddingDays(_ numberOfDays: Int) -> Date? {
+        return Calendar.current.date(byAdding: .day, value: numberOfDays, to: self)
+    }
+
+    func dateByAddingHours(_ numberOfHours: Int) -> Date? {
+        return Calendar.current.date(byAdding: .hour, value: numberOfHours, to: self)
+    }
+
+    func dateByAddingMinutes(_ numberOfMinutes: Int) -> Date? {
+        return Calendar.current.date(byAdding: .minute, value: numberOfMinutes, to: self)
+    }
+
+    func dateByAddingSeconds(_ numberOfSeconds: Int) -> Date? {
+        return Calendar.current.date(byAdding: .second, value: numberOfSeconds, to: self)
+    }
+
 }
