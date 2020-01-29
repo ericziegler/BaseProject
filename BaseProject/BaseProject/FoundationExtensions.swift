@@ -36,6 +36,145 @@ extension String {
         return String(self[start..<end])
     }
 
+    static func formatPhoneNumber(source: String) -> String? {
+
+        // Remove any character that is not a number
+        let numbersOnly = source.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let length = numbersOnly.count
+        let hasLeadingOne = numbersOnly.hasPrefix("1")
+
+        // Check for supported phone number length
+        guard length == 7 || (length == 10 && !hasLeadingOne) || (length == 11 && hasLeadingOne) else {
+            return nil
+        }
+
+        let hasAreaCode = (length >= 10)
+        var sourceIndex = 0
+
+        // Leading 1
+        var leadingOne = ""
+        if hasLeadingOne {
+            leadingOne = "1 "
+            sourceIndex += 1
+        }
+
+        // Area code
+        var areaCode = ""
+        if hasAreaCode {
+            let areaCodeLength = 3
+            guard let areaCodeSubstring = numbersOnly.substring(start: sourceIndex, offsetBy: areaCodeLength) else {
+                return nil
+            }
+            areaCode = String(format: "(%@) ", areaCodeSubstring)
+            sourceIndex += areaCodeLength
+        }
+
+        // Prefix, 3 characters
+        let prefixLength = 3
+        guard let prefix = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
+            return nil
+        }
+        sourceIndex += prefixLength
+
+        // Suffix, 4 characters
+        let suffixLength = 4
+        guard let suffix = numbersOnly.substring(start: sourceIndex, offsetBy: suffixLength) else {
+            return nil
+        }
+
+        return leadingOne + areaCode + prefix + "-" + suffix
+    }
+
+    internal func substring(start: Int, offsetBy: Int) -> String? {
+        guard let substringStartIndex = self.index(startIndex, offsetBy: start, limitedBy: endIndex) else {
+            return nil
+        }
+
+        guard let substringEndIndex = self.index(startIndex, offsetBy: start + offsetBy, limitedBy: endIndex) else {
+            return nil
+        }
+
+        return String(self[substringStartIndex ..< substringEndIndex])
+    }
+
+    func formattedPhone() -> String {
+        var result = self.lowercased()
+
+        result = result.replacingOccurrences(of: "a", with: "2")
+        result = result.replacingOccurrences(of: "b", with: "2")
+        result = result.replacingOccurrences(of: "c", with: "2")
+
+        result = result.replacingOccurrences(of: "d", with: "3")
+        result = result.replacingOccurrences(of: "e", with: "3")
+        result = result.replacingOccurrences(of: "f", with: "3")
+
+        result = result.replacingOccurrences(of: "g", with: "4")
+        result = result.replacingOccurrences(of: "h", with: "4")
+        result = result.replacingOccurrences(of: "i", with: "4")
+
+        result = result.replacingOccurrences(of: "j", with: "5")
+        result = result.replacingOccurrences(of: "k", with: "5")
+        result = result.replacingOccurrences(of: "l", with: "5")
+
+        result = result.replacingOccurrences(of: "m", with: "6")
+        result = result.replacingOccurrences(of: "n", with: "6")
+        result = result.replacingOccurrences(of: "o", with: "6")
+
+        result = result.replacingOccurrences(of: "p", with: "7")
+        result = result.replacingOccurrences(of: "q", with: "7")
+        result = result.replacingOccurrences(of: "r", with: "7")
+        result = result.replacingOccurrences(of: "s", with: "7")
+
+        result = result.replacingOccurrences(of: "t", with: "8")
+        result = result.replacingOccurrences(of: "u", with: "8")
+        result = result.replacingOccurrences(of: "v", with: "8")
+
+        result = result.replacingOccurrences(of: "w", with: "9")
+        result = result.replacingOccurrences(of: "x", with: "9")
+        result = result.replacingOccurrences(of: "z", with: "9")
+        result = result.replacingOccurrences(of: "z", with: "9")
+
+        let range = NSMakeRange(0, result.count)
+        result = result.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression, range: range.toRange(result))
+
+        return result
+    }
+
+    func strippingHTML() -> String {
+        var result = self.replacingOccurrences(of: "<br />", with: "\n")
+
+        result = result.replacingOccurrences(of: "<br/>", with: "\n")
+        result = result.replacingOccurrences(of: "<br></br>", with: "\n")
+        result = result.replacingOccurrences(of: "<br>", with: "\n")
+        result = result.replacingOccurrences(of: "<p />", with: "\n\n")
+        result = result.replacingOccurrences(of: "<b/>", with: "\n\n")
+        result = result.replacingOccurrences(of: "<p>", with: "\n\n")
+        result = result.replacingOccurrences(of: "&#39;", with: "'")
+        result = result.replacingOccurrences(of: "&#34;", with: "\"")
+        result = result.replacingOccurrences(of: "&amp;#39;", with: "'")
+        result = result.replacingOccurrences(of: "&amp;#34;", with: "\"")
+
+        result = result.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+
+        return result
+    }
+
+}
+
+// MARK: - MutableCollection
+
+extension MutableCollection {
+    /// Shuffle the elements of `self` in-place.
+    mutating func shuffle() {
+        // empty and single-element collections don't shuffle
+        if count < 2 { return }
+
+        for i in indices.dropLast() {
+            let diff = distance(from: i, to: endIndex)
+            let j = index(i, offsetBy: numericCast(arc4random_uniform(numericCast(diff))))
+            swapAt(i, j)
+        }
+    }
 }
 
 // MARK: - NSDate

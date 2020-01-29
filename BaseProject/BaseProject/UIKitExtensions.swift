@@ -46,6 +46,39 @@ extension UIImage {
 
 }
 
+// MARK: - UIImageView
+
+let imageCache = NSCache<NSString, AnyObject>()
+
+extension UIImageView {
+    func loadImageUsingCache(withUrl urlString : String) {
+        let url = URL(string: urlString)
+        self.image = nil
+
+        // check cached image
+        if let cachedImage = imageCache.object(forKey: urlString as NSString) as? UIImage {
+            self.image = cachedImage
+            return
+        }
+
+        // if not, download image from url
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+
+            DispatchQueue.main.async {
+                if let image = UIImage(data: data!) {
+                    imageCache.setObject(image, forKey: urlString as NSString)
+                    self.image = image
+                }
+            }
+
+        }).resume()
+    }
+}
+
 // MARK: - UILabel
 
 class ApplicationStyleLabel : UILabel {
@@ -89,6 +122,23 @@ class LightLabel: ApplicationStyleLabel {
     override func commonInit() {
         self.font = UIFont.applicationLightFontOfSize(self.font.pointSize)
     }
+}
+
+class TopAlignedLabel: UILabel {
+
+    override func drawText(in rect: CGRect) {
+        if let stringText = text {
+            let stringTextAsNSString = stringText as NSString
+            let labelStringSize = stringTextAsNSString.boundingRect(with: CGSize(width: self.frame.width,height: CGFloat.greatestFiniteMagnitude),
+                                                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                                    attributes: [NSAttributedString.Key.font: font],
+                                                                    context: nil).size
+            super.drawText(in: CGRect(x:0,y: 0,width: self.frame.width, height:ceil(labelStringSize.height)))
+        } else {
+            super.drawText(in: rect)
+        }
+    }
+
 }
 
 // MARK: - UIButton
