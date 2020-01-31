@@ -379,7 +379,7 @@ class StyledTextView : UITextView {
 // MARK: - UISegmentedControl
 
 extension UISegmentedControl {
-    /// Tint color doesn't have any effect on iOS 13.
+    // Tint color doesn't have any effect on iOS 13.
     func ensureiOS12Style() {
         if #available(iOS 13, *) {
             let tintColorImage = tintColor.image()
@@ -390,7 +390,8 @@ extension UISegmentedControl {
             let highlightedBackgroundColor: UIColor = tintColor.withAlphaComponent(0.2)
             setBackgroundImage(highlightedBackgroundColor.image(), for: .highlighted, barMetrics: .default)
             setBackgroundImage(tintColorImage, for: [.highlighted, .selected], barMetrics: .default)
-            setTitleTextAttributes([.foregroundColor: tintColor!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular)], for: .normal)
+            setTitleTextAttributes([.foregroundColor: UIColor.gray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)], for: .normal)
+            setTitleTextAttributes([.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)], for: .selected)
             setDividerImage(tintColorImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
             layer.borderWidth = 1
             layer.borderColor = tintColor.cgColor
