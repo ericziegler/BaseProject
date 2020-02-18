@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="PF8-xh-Bn5" customClass="Alert" customModule="Sublime" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiJ-UP-zat">
+                    <rect key="frame" x="53.5" y="119" width="307" height="121"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7L2-la-EXL" customClass="RegularLabel" customModule="Sublime" customModuleProvider="target">
+                            <rect key="frame" x="17" y="17" width="273" height="23"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="Xwy-Dg-dRA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXe-q8-HZ2" customClass="LightLabel" customModule="Sublime" customModuleProvider="target">
+                            <rect key="frame" x="17" y="48" width="273" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="fbB-53-Yk5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IY1-Sy-wJm" userLabel="Button Background">
+                            <rect key="frame" x="0.0" y="77" width="307" height="44"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gf3-d3-7SY" userLabel="Vertical Separator">
+                                    <rect key="frame" x="0.0" y="0.0" width="307" height="1"/>
+                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="acd-KD-0pd"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiS-Of-OV7" customClass="RegularButton" customModule="Sublime" customModuleProvider="target">
+                                    <rect key="frame" x="154" y="1" width="153" height="43"/>
+                                    <state key="normal" title="Right"/>
+                                    <connections>
+                                        <action selector="buttonTapped:" destination="PF8-xh-Bn5" eventType="touchUpInside" id="tbC-T6-LDb"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrz-gU-AGI" userLabel="Horizontal Separator">
+                                    <rect key="frame" x="153" y="0.0" width="1" height="44"/>
+                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="FbB-VE-4gB"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtP-LE-szF" customClass="RegularButton" customModule="Sublime" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="307" height="44"/>
+                                    <state key="normal" title="Single"/>
+                                    <connections>
+                                        <action selector="buttonTapped:" destination="PF8-xh-Bn5" eventType="touchUpInside" id="dmg-YJ-du3"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eD9-0Z-qhQ" customClass="RegularButton" customModule="Sublime" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="1" width="153" height="43"/>
+                                    <state key="normal" title="Left"/>
+                                    <connections>
+                                        <action selector="buttonTapped:" destination="PF8-xh-Bn5" eventType="touchUpInside" id="iqK-jj-wFE"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="Gf3-d3-7SY" firstAttribute="top" secondItem="IY1-Sy-wJm" secondAttribute="top" id="1w1-bW-XWx"/>
+                                <constraint firstAttribute="trailing" secondItem="QtP-LE-szF" secondAttribute="trailing" id="2Uh-HR-pQF"/>
+                                <constraint firstItem="QtP-LE-szF" firstAttribute="top" secondItem="IY1-Sy-wJm" secondAttribute="top" id="563-il-erj"/>
+                                <constraint firstItem="zrz-gU-AGI" firstAttribute="leading" secondItem="eD9-0Z-qhQ" secondAttribute="trailing" id="CND-0N-mhW"/>
+                                <constraint firstAttribute="trailing" secondItem="Gf3-d3-7SY" secondAttribute="trailing" id="DOI-BC-yPF"/>
+                                <constraint firstAttribute="bottom" secondItem="QtP-LE-szF" secondAttribute="bottom" id="EAk-pZ-P7u"/>
+                                <constraint firstItem="eD9-0Z-qhQ" firstAttribute="top" secondItem="Gf3-d3-7SY" secondAttribute="bottom" id="I0A-tu-8ja"/>
+                                <constraint firstItem="eD9-0Z-qhQ" firstAttribute="leading" secondItem="IY1-Sy-wJm" secondAttribute="leading" id="KNC-U2-i90"/>
+                                <constraint firstAttribute="bottom" secondItem="eD9-0Z-qhQ" secondAttribute="bottom" id="V87-Na-hPm"/>
+                                <constraint firstItem="hiS-Of-OV7" firstAttribute="top" secondItem="Gf3-d3-7SY" secondAttribute="bottom" id="XO9-y1-Z7A"/>
+                                <constraint firstAttribute="height" constant="44" id="akL-Cb-b0j"/>
+                                <constraint firstAttribute="trailing" secondItem="hiS-Of-OV7" secondAttribute="trailing" id="dV6-Ya-cz1"/>
+                                <constraint firstAttribute="bottom" secondItem="zrz-gU-AGI" secondAttribute="bottom" id="g8J-cY-7dS"/>
+                                <constraint firstItem="zrz-gU-AGI" firstAttribute="top" secondItem="IY1-Sy-wJm" secondAttribute="top" id="joX-6q-eNr"/>
+                                <constraint firstItem="QtP-LE-szF" firstAttribute="leading" secondItem="IY1-Sy-wJm" secondAttribute="leading" id="lGh-Xb-Mes"/>
+                                <constraint firstItem="hiS-Of-OV7" firstAttribute="leading" secondItem="zrz-gU-AGI" secondAttribute="trailing" id="mfx-FJ-cOS"/>
+                                <constraint firstItem="Gf3-d3-7SY" firstAttribute="leading" secondItem="IY1-Sy-wJm" secondAttribute="leading" id="pwC-2Q-Jlx"/>
+                                <constraint firstAttribute="bottom" secondItem="hiS-Of-OV7" secondAttribute="bottom" id="tDX-Ot-Ayi"/>
+                                <constraint firstItem="zrz-gU-AGI" firstAttribute="centerX" secondItem="IY1-Sy-wJm" secondAttribute="centerX" id="wkP-4k-2O2"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="7L2-la-EXL" secondAttribute="trailing" constant="17" id="2FJ-jx-k84"/>
+                        <constraint firstItem="IY1-Sy-wJm" firstAttribute="top" secondItem="MXe-q8-HZ2" secondAttribute="bottom" constant="8" id="8t7-n5-TQ7"/>
+                        <constraint firstItem="MXe-q8-HZ2" firstAttribute="top" secondItem="7L2-la-EXL" secondAttribute="bottom" constant="8" id="9lG-39-3bP"/>
+                        <constraint firstItem="IY1-Sy-wJm" firstAttribute="leading" secondItem="eiJ-UP-zat" secondAttribute="leading" id="CnP-xQ-spR"/>
+                        <constraint firstItem="7L2-la-EXL" firstAttribute="leading" secondItem="eiJ-UP-zat" secondAttribute="leading" constant="17" id="FZc-pS-2xz"/>
+                        <constraint firstAttribute="trailing" secondItem="MXe-q8-HZ2" secondAttribute="trailing" constant="17" id="TtY-dG-oXy"/>
+                        <constraint firstItem="MXe-q8-HZ2" firstAttribute="leading" secondItem="eiJ-UP-zat" secondAttribute="leading" constant="17" id="UFB-gt-s3H"/>
+                        <constraint firstItem="7L2-la-EXL" firstAttribute="top" secondItem="eiJ-UP-zat" secondAttribute="top" constant="17" id="Y3h-Jv-FDM"/>
+                        <constraint firstAttribute="trailing" secondItem="IY1-Sy-wJm" secondAttribute="trailing" id="a5i-9q-XHq"/>
+                        <constraint firstAttribute="bottom" secondItem="IY1-Sy-wJm" secondAttribute="bottom" id="ohE-0l-Npf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="eiJ-UP-zat" firstAttribute="top" secondItem="zXM-vc-3KU" secondAttribute="top" constant="75" id="dpX-oC-1XR"/>
+                <constraint firstItem="eiJ-UP-zat" firstAttribute="width" secondItem="PF8-xh-Bn5" secondAttribute="width" multiplier="0.741546" id="gLe-Q2-Hpx"/>
+                <constraint firstItem="eiJ-UP-zat" firstAttribute="centerX" secondItem="PF8-xh-Bn5" secondAttribute="centerX" id="n7e-37-oqJ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="zXM-vc-3KU"/>
+            <connections>
+                <outlet property="alertBox" destination="eiJ-UP-zat" id="BRo-Bu-ynY"/>
+                <outlet property="leftButton" destination="eD9-0Z-qhQ" id="luK-cv-BEN"/>
+                <outlet property="messageLabel" destination="MXe-q8-HZ2" id="59q-9d-EnG"/>
+                <outlet property="rightButton" destination="hiS-Of-OV7" id="awv-oq-Ocy"/>
+                <outlet property="singleButton" destination="QtP-LE-szF" id="B5m-db-Van"/>
+                <outlet property="titleLabel" destination="7L2-la-EXL" id="0Bi-c5-x2Z"/>
+                <outlet property="verticalSeparator" destination="zrz-gU-AGI" id="Vuf-dR-TK1"/>
+            </connections>
+            <point key="canvasLocation" x="188.40579710144928" y="49.553571428571423"/>
+        </view>
+    </objects>
+</document>

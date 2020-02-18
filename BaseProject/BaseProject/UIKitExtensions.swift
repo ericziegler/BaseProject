@@ -48,35 +48,34 @@ extension UIImage {
 
 // MARK: - UIImageView
 
-let imageCache = NSCache<NSString, AnyObject>()
+let imageCache = NSCache<NSString, UIImage>()
 
-extension UIImageView {
-    func loadImageUsingCache(withUrl urlString : String) {
-        let url = URL(string: urlString)
-        self.image = nil
+class RemoteImageView: UIImageView {
 
-        // check cached image
-        if let cachedImage = imageCache.object(forKey: urlString as NSString) as? UIImage {
-            self.image = cachedImage
-            return
-        }
+    var imageURL: String = ""
 
-        // if not, download image from url
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data!) {
-                    imageCache.setObject(image, forKey: urlString as NSString)
-                    self.image = image
+    func load(url: URL?) {
+        if let url = url {
+            imageURL = url.absoluteString
+            if imageCache.object(forKey: imageURL as NSString) != nil {
+                self.image = imageCache.object(forKey: imageURL as NSString)
+            } else {
+                DispatchQueue.global().async { [weak self] in
+                    if let data = try? Data(contentsOf: url) {
+                        if let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                if self?.imageURL == url.absoluteString {
+                                    self?.image = image
+                                    imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                                }
+                            }
+                        }
+                    }
                 }
             }
-
-        }).resume()
+        }
     }
+
 }
 
 // MARK: - UILabel
