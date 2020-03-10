@@ -142,8 +142,8 @@
 		78C9136A23610C21002F6EAF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				78C9136B23610C39002F6EAF /* UIKitExtensions.swift */,
 				78C9136D23610C49002F6EAF /* FoundationExtensions.swift */,
+				78C9136B23610C39002F6EAF /* UIKitExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";

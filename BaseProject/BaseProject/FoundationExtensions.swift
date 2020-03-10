@@ -182,32 +182,36 @@ extension MutableCollection {
 extension Date {
 
     // sunday = 1. saturday = 7
-    func dayOfWeekIndex() -> Int {
+    var dayOfWeekIndex: Int {
         let calendar: Calendar = Calendar.current
         return calendar.component(.weekday, from: self)
     }
 
-    func year() -> Int {
+    var year: Int {
         return Calendar.current.component(.year, from: self)
     }
 
-    func month() -> Int {
+    var month: Int {
         return Calendar.current.component(.month, from: self)
     }
 
-    func day() -> Int {
+    var week: Int {
+        return Calendar.current.component(.weekOfYear, from: self)
+    }
+
+    var day: Int {
         return Calendar.current.component(.day, from: self)
     }
 
-    func hours() -> Int {
+    var hours: Int {
         return Calendar.current.component(.hour, from: self)
     }
 
-    func minutes() -> Int {
+    var minutes: Int {
         return Calendar.current.component(.minute, from: self)
     }
 
-    func seconds() -> Int {
+    var seconds: Int {
         return Calendar.current.component(.second, from: self)
     }
 
@@ -225,7 +229,7 @@ extension Date {
 
     func dateAtBeginningOfHour() -> Date? {
         var components: DateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self)
-        components.hour = self.hours()
+        components.hour = self.hours
         components.minute = 0
         components.second = 0
         return Calendar.current.date(from: components)
@@ -353,7 +357,7 @@ extension Date {
     func isToday() -> Bool
     {
         let today = Date()
-        return self.year() == today.year() && self.month() == today.month() && self.day() == today.day()
+        return self.year == today.year && self.month == today.month && self.day == today.day
     }
 
     func roundToMinutes(interval: Int) -> Date {
