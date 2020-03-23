@@ -549,3 +549,18 @@ extension Date {
     }
 
 }
+
+// MARK: - File Handling
+
+func openTextFileNamed(name: String, fileExtension: String) -> String? {
+    var result: String?
+    if let filePath = Bundle.main.path(forResource: name, ofType: fileExtension) {
+        do {
+            let contents = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
+            result = contents
+        } catch {
+            debugPrint(error)
+        }
+    }
+    return result
+}
