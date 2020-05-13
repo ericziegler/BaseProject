@@ -16,9 +16,9 @@ class TextAlert: UIView {
     @IBOutlet var alertBox: UIView!
     @IBOutlet var titleLabel: RegularLabel!
     @IBOutlet var textField: StyledTextField!
-    @IBOutlet var singleButton: RegularButton!
-    @IBOutlet var leftButton: RegularButton!
-    @IBOutlet var rightButton: RegularButton!
+    @IBOutlet var singleButton: BoldButton!
+    @IBOutlet var leftButton: BoldButton!
+    @IBOutlet var rightButton: BoldButton!
     @IBOutlet var verticalSeparator: UIView!
 
     var title = ""
@@ -77,7 +77,7 @@ class TextAlert: UIView {
 
     @IBAction func buttonTapped(_ sender: AnyObject) {
         hideAlert()
-        if let button = sender as? RegularButton {
+        if let button = sender as? UIButton {
             buttonCompletions[button.tag]()
         }
     }
