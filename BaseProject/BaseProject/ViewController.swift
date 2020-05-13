@@ -29,7 +29,9 @@ class ViewController: BaseViewController {
     @IBAction func textAlertTapped(_ sender: AnyObject) {
         let textAlert = TextAlert.createAlertFor(viewController: self, title: "Test Text Alert", placeholder: "Type something")
         textAlert.addButtonWith("OK") {
-            print("Text Alert - \(textAlert.textField.text)")
+            if let text = textAlert.textField.text {
+                print("Text Alert - \(text)")
+            }
         }
         textAlert.showAlert()
     }

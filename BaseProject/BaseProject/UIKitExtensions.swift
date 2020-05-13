@@ -126,7 +126,7 @@ class LightLabel: ApplicationStyleLabel {
 class TopAlignedLabel: UILabel {
 
     override func drawText(in rect: CGRect) {
-        if let stringText = text {
+        if let stringText = text, let font = font {
             let stringTextAsNSString = stringText as NSString
             let labelStringSize = stringTextAsNSString.boundingRect(with: CGSize(width: self.frame.width,height: CGFloat.greatestFiniteMagnitude),
                                                                     options: NSStringDrawingOptions.usesLineFragmentOrigin,
