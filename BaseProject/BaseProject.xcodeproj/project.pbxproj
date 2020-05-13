@@ -14,6 +14,7 @@
 		784C765123FC7B1900029266 /* TextAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784C765023FC7B1900029266 /* TextAlert.xib */; };
 		784C765323FC7B2300029266 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784C765223FC7B2300029266 /* ProgressView.swift */; };
 		784C765523FC7B2C00029266 /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784C765423FC7B2C00029266 /* ProgressView.xib */; };
+		78C3185F246C400C001B4315 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C3185E246C400C001B4315 /* JSON.swift */; };
 		78C9134F23610B07002F6EAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C9134E23610B07002F6EAF /* AppDelegate.swift */; };
 		78C9135123610B07002F6EAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C9135023610B07002F6EAF /* ViewController.swift */; };
 		78C9135423610B07002F6EAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C9135223610B07002F6EAF /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		784C765023FC7B1900029266 /* TextAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextAlert.xib; sourceTree = "<group>"; };
 		784C765223FC7B2300029266 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		784C765423FC7B2C00029266 /* ProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
+		78C3185E246C400C001B4315 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		78C9134B23610B07002F6EAF /* BaseProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C9134E23610B07002F6EAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78C9135023610B07002F6EAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		78C3185D246C3FFF001B4315 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				78C3185E246C400C001B4315 /* JSON.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		78C9134223610B07002F6EAF = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +105,7 @@
 				78C9136123610B66002F6EAF /* ViewControllers */,
 				784C764923FC7AE900029266 /* Views */,
 				78C9136A23610C21002F6EAF /* Extensions */,
+				78C3185D246C3FFF001B4315 /* Helpers */,
 				78C9136923610C0B002F6EAF /* Resources */,
 			);
 			path = BaseProject;
@@ -111,14 +122,14 @@
 		78C9136123610B66002F6EAF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				78C9136223610B7B002F6EAF /* BaseViewControllers */,
+				78C9136223610B7B002F6EAF /* BaseControllers */,
 				78C9135023610B07002F6EAF /* ViewController.swift */,
 				78C9135223610B07002F6EAF /* Main.storyboard */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		78C9136223610B7B002F6EAF /* BaseViewControllers */ = {
+		78C9136223610B7B002F6EAF /* BaseControllers */ = {
 			isa = PBXGroup;
 			children = (
 				78C9136323610B99002F6EAF /* BaseNavigationController.swift */,
@@ -126,7 +137,7 @@
 				78C9136723610BE9002F6EAF /* BaseTableViewController.swift */,
 				784C764723FC7AAC00029266 /* BaseTabBarController.swift */,
 			);
-			path = BaseViewControllers;
+			path = BaseControllers;
 			sourceTree = "<group>";
 		};
 		78C9136923610C0B002F6EAF /* Resources */ = {
@@ -225,6 +236,7 @@
 				784C764B23FC7AFF00029266 /* Alert.swift in Sources */,
 				784C764F23FC7B1100029266 /* TextAlert.swift in Sources */,
 				78C9136E23610C49002F6EAF /* FoundationExtensions.swift in Sources */,
+				78C3185F246C400C001B4315 /* JSON.swift in Sources */,
 				78C9135123610B07002F6EAF /* ViewController.swift in Sources */,
 				78C9136623610BD5002F6EAF /* BaseViewController.swift in Sources */,
 				78C9136C23610C39002F6EAF /* UIKitExtensions.swift in Sources */,
