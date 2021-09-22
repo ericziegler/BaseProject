@@ -33,6 +33,7 @@
 		78AB8FBC26FBD9B800CD6399 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AB8FBB26FBD9B800CD6399 /* UIViewExtensions.swift */; };
 		78AB8FBE26FBD9D100CD6399 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AB8FBD26FBD9D100CD6399 /* AppUtilities.swift */; };
 		78AB8FC026FBD9DE00CD6399 /* FileUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AB8FBF26FBD9DE00CD6399 /* FileUtilities.swift */; };
+		78AB8FF826FBDABC00CD6399 /* CellTransitionComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AB8FF726FBDABC00CD6399 /* CellTransitionComponents.swift */; };
 		78C3185F246C400C001B4315 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C3185E246C400C001B4315 /* JSON.swift */; };
 		78C9134F23610B07002F6EAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C9134E23610B07002F6EAF /* AppDelegate.swift */; };
 		78C9135123610B07002F6EAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C9135023610B07002F6EAF /* ViewController.swift */; };
@@ -68,6 +69,7 @@
 		78AB8FBB26FBD9B800CD6399 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		78AB8FBD26FBD9D100CD6399 /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
 		78AB8FBF26FBD9DE00CD6399 /* FileUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtilities.swift; sourceTree = "<group>"; };
+		78AB8FF726FBDABC00CD6399 /* CellTransitionComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTransitionComponents.swift; sourceTree = "<group>"; };
 		78C3185E246C400C001B4315 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		78C9134B23610B07002F6EAF /* BaseProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C9134E23610B07002F6EAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				78AB8F9B26FBD89600CD6399 /* TextFieldComponents.swift */,
 				78AB8F9D26FBD8A700CD6399 /* TextViewComponents.swift */,
 				78AB8F9F26FBD8B700CD6399 /* UIImageViewComponents.swift */,
+				78AB8FF726FBDABC00CD6399 /* CellTransitionComponents.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				78C3185F246C400C001B4315 /* JSON.swift in Sources */,
 				78AB8F9226FBD74E00CD6399 /* ButtonComponents.swift in Sources */,
 				78AB8FBA26FBD9A400CD6399 /* UITextViewExtensions.swift in Sources */,
+				78AB8FF826FBDABC00CD6399 /* CellTransitionComponents.swift in Sources */,
 				78C9135123610B07002F6EAF /* ViewController.swift in Sources */,
 				78AB8F9426FBD77800CD6399 /* UICollectionViewFlowLayoutComponents.swift in Sources */,
 				78AB8FA026FBD8B700CD6399 /* UIImageViewComponents.swift in Sources */,
